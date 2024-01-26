@@ -78,7 +78,7 @@
 </header>
 
 <main>
-    <form>
+    <form action="/save" method="post">
         <label for="name">이름:</label>
         <input type="text" id="name" name="name" required>
 
@@ -89,8 +89,8 @@
         <input type="password" id="password" name="password" required>
 
         <div>
-            <label for="private">비공개로 작성</label>
-            <input type="checkbox" name="private" id="private">
+            <label for="ckPrivate">비공개로 작성</label>
+            <input type="checkbox" name="ckPrivate" id="ckPrivate">
         </div>
 
         <button type="submit">작성하기</button>
