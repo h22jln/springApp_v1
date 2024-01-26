@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록 보기</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .post-it {
+            width: 200px;
+            height: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            position: absolute;
+            font-family: Arial, sans-serif;
+        }
+
+        .post-it-content {
+            height: 100%;
+        }
+
+        .post-it-content #content{
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .post-it-content #who{
+            margin-top: 100px;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
-read
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function getRandomColor() {
+        const colors = ['#FFCC00', '#FF6666', '#99FF99', '#66B2FF'];
+        return colors[getRandomNumber(0, colors.length - 1)];
+    }
+
+    function createRandomPostIt(name,content,ckPrivate,date) {
+        const postIt = document.createElement('div');
+        postIt.classList.add('post-it');
+        postIt.style.backgroundColor = getRandomColor();
+
+        const left = getRandomNumber(0, window.innerWidth - 200);
+        const top = getRandomNumber(0, window.innerHeight - 200);
+        postIt.style.left = `${left}px`;
+        postIt.style.top = `${top}px`;
+
+        if(ckPrivate){
+            postIt.innerHTML = `
+                <div class="post-it-content">
+                    <p id="content">비공개입니다</p>
+                </div>
+            `;
+        }else{
+            postIt.innerHTML = `
+                <div class="post-it-content">
+                    <p id="content">${content}</p>
+                    <p id="who">${date},${name}</p>
+                </div>
+            `;
+        }
+
+        document.body.appendChild(postIt);
+    }
+
+    var boards = /*[[${boards}]]*/ [];
+
+    // 이제 JavaScript 코드에서 boards를 사용할 수 있음
+    for (let i = 0; i < boards.length; i++) {
+        createRandomPostIt(boards[i].name, boards[i].content, boards[i].ckPrivate, boards[i].created_at);
+    }
+    /*]]>*/
+</script>
 </body>
 </html>
