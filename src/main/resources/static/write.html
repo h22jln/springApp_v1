@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록 쓰기</title>
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        main {
+            display: flex;
+            padding: 20px;
+            min-height: calc(100vh - 60px);
+        }
+
+        form {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+            width: 50px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        main form div{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>방명록 쓰기</h1>
+    </div>
+</header>
+
+<main>
+    <form>
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="content">내용:</label>
+        <textarea id="content" name="content" rows="4" required></textarea>
+
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required>
+
+        <div>
+            <label for="private">비공개로 작성</label>
+            <input type="checkbox" name="private" id="private">
+        </div>
+
+        <button type="submit">작성하기</button>
+    </form>
+</main>
+
+</body>
+</html>
