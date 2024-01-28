@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Page</title>
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        header a{
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        main {
+            display: flex;
+            padding: 20px;
+            min-height: calc(100vh - 60px);
+        }
+
+        .menu {
+            width: 200px;
+            background-color: #eee;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu a {
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .content {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .content p{
+            font-size: 100px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1><a href="/">HELLO ᒄ₍⁽ˆ⁰ˆ⁾₎ᒃ♪♬</a></h1>
+    </div>
+</header>
+
+<main>
+    <div class="menu">
+        <a href="#" onclick="loadContent('write')">방명록 쓰기</a>
+    </div>
+    <div class="content" id="mainContent">
+        <p>ERROR!</p>
+    </div>
+</main>
+
+<footer>
+    &copy; 2024 Example Page
+</footer>
+
+<script>
+    function loadContent(page) {
+        fetch('/' + page + '.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('mainContent').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading content:', error);
+            });
+    }
+</script>
+
+</body>
+</html>
