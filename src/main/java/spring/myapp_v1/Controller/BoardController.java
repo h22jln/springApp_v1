@@ -23,11 +23,20 @@ public class BoardController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute Board board, Model model){
+        int resultCode = 0;
         // DB에 저장하고
-        boardService.save(board);
+        resultCode = boardService.save(board);
+
+        if(resultCode == -999){
+            return "error";
+        }
 
         // 저장된 모든 값을 가져온다
         List<Board> boards = boardService.selectBoards();
+
+        if(boards.size() == 0){
+            return "error";
+        }
         model.addAttribute("boards", boards);
 
         return "read";

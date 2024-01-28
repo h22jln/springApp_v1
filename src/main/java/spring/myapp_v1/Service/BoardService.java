@@ -13,8 +13,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public void save(Board board){
-        boardRepository.save(board);
+    public int save(Board board){
+        return boardRepository.save(board);
     }
 
     public List<Board> selectBoards(){

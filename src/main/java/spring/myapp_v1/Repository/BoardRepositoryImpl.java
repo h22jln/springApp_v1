@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import spring.myapp_v1.Domain.Board;
 
 import javax.sql.DataSource;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Slf4j
@@ -19,7 +20,12 @@ public class BoardRepositoryImpl implements BoardRepository {
     @Override
     public int save(Board board) {
         String sql = "insert into board(name,content,password,ckPrivate) values(?,?,?,?)";
-        int update = template.update(sql, board.getName(), board.getContent(), board.getPassword(), board.isCkPrivate());
+        int update = 0;
+        try{
+            template.update(sql, board.getName(), board.getContent(), board.getPassword(), board.isCkPrivate());
+        }catch (Exception e){
+            return -999;
+        }
         return update;
     }
 
